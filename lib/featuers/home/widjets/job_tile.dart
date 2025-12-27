@@ -20,10 +20,12 @@ class JobTile extends StatelessWidget {
         jobTile,
         style: TextStyle(
           decoration: isCheck ? TextDecoration.lineThrough : null,
+          color: Theme.of(context).brightness == Brightness.dark
+              ? Colors.white
+              : Colors.black87,
         ),
       ),
       trailing: Checkbox(
-        activeColor: Colors.teal[400],
         value: isCheck,
         onChanged: checkboxchange,
       ),

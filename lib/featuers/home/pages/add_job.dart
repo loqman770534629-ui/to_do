@@ -17,10 +17,12 @@ class AddJob extends StatelessWidget {
         children: [
           Text(
             textAlign: TextAlign.center,
-            'Add Job',
+            'إضافة مهمة جديدة',
             style: TextStyle(
-              fontSize: 20,
-              color: Colors.indigo,
+              fontSize: 24,
+              color: Theme.of(context).brightness == Brightness.dark
+                  ? Colors.blue[300]
+                  : Colors.indigo,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -34,15 +36,19 @@ class AddJob extends StatelessWidget {
           SizedBox(height: 30),
 
           FilledButton(
-            style: FilledButton.styleFrom(backgroundColor: Colors.teal[400]),
             onPressed: () {
-              Provider.of<JobsData>(
-                context,
-                listen: false,
-              ).addnewjobs(newJobName);
-              Navigator.pop(context);
+              if (newJobName != null && newJobName!.trim().isNotEmpty) {
+                Provider.of<JobsData>(
+                  context,
+                  listen: false,
+                ).addnewjobs(newJobName);
+                Navigator.pop(context);
+              }
             },
-            child: Text('Add'),
+            child: Text(
+              'إضافة',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
           ),
         ],
       ),
